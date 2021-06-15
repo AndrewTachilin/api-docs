@@ -72,6 +72,115 @@ Performed when code was applied. Request example:
    "id": "45a1d85d-2fdf-483e-8dfa-6d253148c730"
 }   
 ```
-
+```json5
+{
+   "method": "code.apply",
+   "params": {
+       "code": "<SOME_WHITE_BIT_CODE>",
+       "nonce": 1
+   },
+   "id": "45a1d85d-2fdf-483e-8dfa-6d253148c730"
+}   
+```
+```json5
+{
+  method: "deposit.accepted",
+  params: {
+    "address": "walled address",                  // deposit address
+    "amount": "0.000600000000000000",             // amount of deposit
+    "createdAt": 1593437922,                      // timestamp of deposit
+    "currency": "Bitcoin",                        // deposit currency
+    "description": "",                            // deposit description
+    "fee": "0.000000000000000000",                // deposit fee
+    "memo": "",                                   // deposit memo
+    "method": 1,                                  // called method 1 - deposit, 2 - withdraw
+    "network": null,                              // if currency is multi network
+    "status": 15,                                 // transactions status
+    "ticker": "BTC",                              // deposit currency ticker
+    "transactionHash": "transaction hash",        // deposit transaction hash
+    "uniqueId": null,                             // unique Id of deposit
+    "confirmations": {                            // if transaction status == 15 you can see this object
+    "actual": 1,                                  // current block confirmations
+    "required": 2                                 // required block confirmation for successful deposit
+    }
+  },
+  id: 'uuid'
+}   
+```
+```json5
+{
+  method: "deposit.processed",
+  params: {
+    "address": "walled address",                  // deposit address
+    "amount": "0.000600000000000000",             // amount of deposit
+    "createdAt": 1593437922,                      // timestamp of deposit
+    "currency": "Bitcoin",                        // deposit currency
+    "description": "",                            // deposit description
+    "fee": "0.000000000000000000",                // deposit fee
+    "memo": "",                                   // deposit memo
+    "method": 1,                                  // called method 1 - deposit, 2 - withdraw
+    "network": null,                              // if currency is multi network
+    "status": 15,                                 // transactions status
+    "ticker": "BTC",                              // deposit currency ticker
+    "transactionHash": "transaction hash",        // deposit transaction hash
+    "uniqueId": null,                             // unique Id of deposit
+    "confirmations": {                            // if transaction status == 15 you can see this object
+    "actual": 1,                                  // current block confirmations
+    "required": 2                                 // required block confirmation for successful deposit
+    }
+  },
+  id: 'uuid'
+}   
+```
+```json5
+{
+  method: "deposit.canceled",
+  params: {
+    "address": "walled address",                  // deposit address
+    "amount": "0.000600000000000000",             // amount of deposit
+    "createdAt": 1593437922,                      // timestamp of deposit
+    "currency": "Bitcoin",                        // deposit currency
+    "description": "",                            // deposit description
+    "fee": "0.000000000000000000",                // deposit fee
+    "memo": "",                                   // deposit memo
+    "method": 1,                                  // called method 1 - deposit, 2 - withdraw
+    "network": null,                              // if currency is multi network
+    "status": 15,                                 // transactions status
+    "ticker": "BTC",                              // deposit currency ticker
+    "transactionHash": "transaction hash",        // deposit transaction hash
+    "uniqueId": null,                             // unique Id of deposit
+    "confirmations": {                            // if transaction status == 15 you can see this object
+    "actual": 1,                                  // current block confirmations
+    "required": 2                                 // required block confirmation for successful deposit
+    }
+  },
+  id: 'uuid'
+}
+```
+```json5
+{
+  method: "deposit.canceled",
+  params: {
+    "address": "walled address",                  // deposit address
+    "amount": "0.000600000000000000",             // amount of deposit
+    "createdAt": 1593437922,                      // timestamp of deposit
+    "currency": "Bitcoin",                        // deposit currency
+    "description": "",                            // deposit description
+    "fee": "0.000000000000000000",                // deposit fee
+    "memo": "",                                   // deposit memo
+    "method": 1,                                  // called method 1 - deposit, 2 - withdraw
+    "network": null,                              // if currency is multi network
+    "status": 15,                                 // transactions status
+    "ticker": "BTC",                              // deposit currency ticker
+    "transactionHash": "transaction hash",        // deposit transaction hash
+    "uniqueId": null,                             // unique Id of deposit
+    "confirmations": {                            // if transaction status == 15 you can see this object
+      "actual": 1,                                  // current block confirmations
+      "required": 2                                 // required block confirmation for successful deposit
+    }
+  },
+  id: 'uuid'
+}
+```
 
 
