@@ -14,35 +14,35 @@ Please pay attention that secret key will be show only one time, so make sure yo
 
 ### For web hook keys generation
 
-While you are generating new web hook keys you should make sure your web-hook server is online. To check it the test request will be performed. 
+While you are generating new web hook keys you should make sure your web-hook server is online. To check it the test request will be performed.
 The request will be performed with HEAD method. As a result your web hook service should respond with 200 http status code
 
 ### For processing web-hook requests
 
-All web hook requests are performing using POST method and with application/json content type. Consumer server should respond with 200 HTTP status code. If consumer was unable to handle web-hook, the request will be retry every 10 minutes but not more than 5 times.  
+All web hook requests are performing using POST method and with application/json content type. Consumer server should respond with 200 HTTP status code. If consumer was unable to handle web-hook, the request will be retry every 10 minutes but not more than 5 times.
 
 #### Body data
 
-All web-hook requests are performing with 
+All web-hook requests are performing with
 
 ```json5
 {
-   "method": "string",
-   "params": {
+  "method": "string",
+  "params": {
 
-       "nonce": 0
-   },
-   "id": "uniqueID"
+    "nonce": 0
+  },
+  "id": "uniqueID"
 }
 ```
 
 **method** - string. The name of method which was evaluated. Web hooks API supports such web-hook methods:
 
-- **code.apply**. Performs when code owned by a customer was applied. 
+- **code.apply**. Performs when code owned by a customer was applied.
 
 **id** - string. Uuid to identify every request.
 
-**params** - the request payload. Here you can find useful data about passed actions, which triggered web hook call. Also in this field placed a nonce. **'nonce'** - a number that is always **greater** than the previous request’s nonce number 
+**params** - the request payload. Here you can find useful data about passed actions, which triggered web hook call. Also in this field placed a nonce. **'nonce'** - a number that is always **greater** than the previous request’s nonce number
 
 
 #### Request headers
@@ -64,14 +64,113 @@ Performed when code was applied. Request example:
 
 ```json5
 {
-   "method": "code.apply",
-   "params": {
-       "code": "<SOME_WHITE_BIT_CODE>",
-       "nonce": 1
-   },
-   "id": "45a1d85d-2fdf-483e-8dfa-6d253148c730"
+  "method": "code.apply",
+  "params": {
+    "code": "<SOME_WHITE_BIT_CODE>",
+    "nonce": 1
+  },
+  "id": "45a1d85d-2fdf-483e-8dfa-6d253148c730"
+} 
+```
+```json5
+{
+  method: "deposit.accepted",
+  params: {
+    "address": "wallet address",                  // deposit address
+    "amount": "0.000600000000000000",             // amount of deposit
+    "createdAt": 1593437922,                      // timestamp of deposit
+    "currency": "Bitcoin",                        // deposit currency
+    "description": "",                            // deposit description
+    "fee": "0.000000000000000000",                // deposit fee
+    "memo": "",                                   // deposit memo
+    "method": 1,                                  // called method 1 - deposit, 2 - withdraw
+    "network": "TRC20",                           // if currency is multi network
+    "status": 15,                                 // transactions status
+    "ticker": "BTC",                              // deposit currency ticker
+    "transactionHash": "transaction hash",        // deposit transaction hash
+    "uniqueId": null,                             // unique Id of deposit
+    "confirmations": {                            // if transaction has confirmations info it will display here
+        "actual": 1,                              // current block confirmations
+        "required": 2                             // required block confirmation for successful deposit
+    }
+  },
+  id: 'uuid'
 }   
 ```
-
+```json5
+{
+  method: "deposit.processed",
+  params: {
+    "address": "wallet address",                  // deposit address
+    "amount": "0.000600000000000000",             // amount of deposit
+    "createdAt": 1593437922,                      // timestamp of deposit
+    "currency": "Bitcoin",                        // deposit currency
+    "description": "",                            // deposit description
+    "fee": "0.000000000000000000",                // deposit fee
+    "memo": "",                                   // deposit memo
+    "method": 1,                                  // called method 1 - deposit, 2 - withdraw
+    "network": "ERC20",                           // if currency is multi network
+    "status": 15,                                 // transactions status
+    "ticker": "BTC",                              // deposit currency ticker
+    "transactionHash": "transaction hash",        // deposit transaction hash
+    "uniqueId": null,                             // unique Id of deposit
+    "confirmations": {                            // if transaction has confirmations info it will display here
+        "actual": 1,                              // current block confirmations
+        "required": 2                             // required block confirmation for successful deposit
+    }
+  },
+  id: 'uuid'
+}   
+```
+```json5
+{
+  method: "deposit.canceled",
+  params: {
+    "address": "wallet address",                  // deposit address
+    "amount": "0.000600000000000000",             // amount of deposit
+    "createdAt": 1593437922,                      // timestamp of deposit
+    "currency": "Bitcoin",                        // deposit currency
+    "description": "",                            // deposit description
+    "fee": "0.000000000000000000",                // deposit fee
+    "memo": "",                                   // deposit memo
+    "method": 1,                                  // called method 1 - deposit, 2 - withdraw
+    "network": "OMNI",                            // if currency is multi network
+    "status": 15,                                 // transactions status
+    "ticker": "BTC",                              // deposit currency ticker
+    "transactionHash": "transaction hash",        // deposit transaction hash
+    "uniqueId": null,                             // unique Id of deposit
+    "confirmations": {                            // if transaction has confirmations info it will display here
+        "actual": 1,                              // current block confirmations
+        "required": 2                             // required block confirmation for successful deposit
+    }
+  },
+  id: 'uuid'
+}
+```
+```json5
+{
+  method: "deposit.canceled",
+  params: {
+    "address": "wallet address",                  // deposit address
+    "amount": "0.000600000000000000",             // amount of deposit
+    "createdAt": 1593437922,                      // timestamp of deposit
+    "currency": "Bitcoin",                        // deposit currency
+    "description": "",                            // deposit description
+    "fee": "0.000000000000000000",                // deposit fee
+    "memo": "",                                   // deposit memo
+    "method": 1,                                  // called method 1 - deposit, 2 - withdraw
+    "network": null,                              // if currency is multi network
+    "status": 15,                                 // transactions status
+    "ticker": "BTC",                              // deposit currency ticker
+    "transactionHash": "transaction hash",        // deposit transaction hash
+    "uniqueId": null,                             // unique Id of deposit
+    "confirmations": {                            // if transaction has confirmations info it will display here
+        "actual": 1,                              // current block confirmations
+        "required": 2                             // required block confirmation for successful deposit
+    }
+  },
+  id: 'uuid'
+}
+```
 
 
