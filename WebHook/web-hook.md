@@ -124,7 +124,7 @@ Performed when code was applied. Request example:
 ```
 ```json5
 {
-  method: "deposit.canceled",
+  method: "deposit.updated",
   params: {
     "address": "wallet address",                  // deposit address
     "amount": "0.000600000000000000",             // amount of deposit
